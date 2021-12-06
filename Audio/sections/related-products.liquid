@@ -1,0 +1,29 @@
+{% assign product_id = product.id %}
+
+<h2 class="may-also-h2">You May Also Like</h2>
+	<div class="may-also-like">
+	{% for product in collections.all.products  limit: 3 %}
+
+			<div>
+				<img src="{{ product | img_url: '400x400' }}" alt="{{product.featured_image.alt}}">
+				<h4>{{product.title | truncatewords: 1, ""}}</h4>
+				<a href="{{product.url}}" class="button-1">
+					See product
+				</a>
+		</div>
+{% endfor %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Related products",
+	"templates": ["product"],
+  "settings": [
+
+   ],
+	 "presets":[{
+		"name": "Related products"
+	 }]
+}
+{% endschema %}

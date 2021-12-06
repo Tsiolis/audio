@@ -1,0 +1,7 @@
+development:
+  password: shptka_ae3d0d536b4741419a91706944c5b89f
+  theme_id: "127808438454"
+  store: audiophile-frontendmentor.myshopify.com
+  ignore_files:
+    - config/settings_data.json
+    - templates/*.json

@@ -1,0 +1,215 @@
+<style>
+	.featured-products{
+		max-width: 69.375rem;
+		width: 90%;
+		margin: auto;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 4rem;
+		margin-bottom: 12.5rem;
+	}
+	
+	.zx9{
+		border-radius: 0.5rem;
+		color: var(--white);
+		background: var(--dark-orange);
+		grid-column: 1 / 3;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		place-items: center;
+	}
+	.zx9-text{
+		max-width: 21.875rem;
+	}
+	.zx9-img{
+		padding-top: 7rem;
+		overflow: hidden;
+	}
+	.zx9-text{
+		padding-top: 1rem;
+	}
+	.zx9-img img{
+		max-height: 25.0625rem;
+		max-width: 30.8125rem;
+		width: 100%;
+		position: relative;
+		bottom: -10px;
+		overflow: hidden;
+	}
+	
+	.zx9 p{
+		font-weight: 100;
+		font-size: 15px;
+		line-height: 25px;
+		padding: 1.5rem 0 3rem 0;
+		opacity: 0.5;
+	}
+	
+	.zx9 a{
+		border: 0;
+		background: black;
+		color: var(--white);
+		font-weight: var(--bold);
+		font-size: 0.8125rem;
+		text-transform: uppercase;
+		padding: 1rem 2rem;
+	}
+	
+	.zx9 button:hover{
+		background: #4C4C4C;
+	}
+	
+	.zx7{
+		border-radius: 0.5rem;
+		height: 282px;
+		grid-column: 1 / 3;
+		background: url({{ section.settings.image_2 | img_url: 'large' }});
+		background-repeat: no-repeat;
+		background-size: cover;
+		max-width: var(--max-width);
+		width: 100%;
+	}
+	
+	.zx7 button{
+		margin-top: 2rem;
+	}
+	
+	.zx7-text{
+		padding: 6rem 0 6rem 5rem;
+	}
+	
+	.yx1-1{
+		border-radius: 0.5rem;
+		background: url({{ section.settings.image_3 | img_url: 'large'}});
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: 100%;
+	}
+	
+	.yx1-2{
+		border-radius: 0.5rem;
+		height: 20rem;
+		width: 100%;
+		background: var(--light-grey);
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	
+	.yx1-2-text{
+		padding-left: 3rem;
+		font-weight: var(--bold);
+	}
+	
+	.featured-products h4{
+		padding-bottom: 2rem;
+	}
+	@media(max-width: 37.5em){
+		.zx7{
+			background: url({{ section.settings.image_2 | img_url: 'large' }});
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: top;
+		}
+		
+	}
+		}
+	</style>
+	
+	<div class="featured-products">
+		<div class="zx9">
+			<div class="zx9-img">
+				<img src="{{ section.settings.image_1 | img_url: 'large' }}" alt="{{ section.settings.image.alt }}">
+			</div>
+			<div class="zx9-text">
+			<h2>{{ section.settings.heading_1 }}</h2>
+			<p>{{ section.settings.description_1 }}</p>
+			<a href="{{ section.settings.url_1 }}">See product</a>
+			</div>
+		</div>
+		<div class="zx7">
+			<div class="zx7-text">
+			<h4>{{ section.settings.heading_2 }}</h4>
+				<a href="{{ section.settings.url_2 }}" class="button-2">
+					See product
+				</a>	
+			</div>
+		</div>
+		<div class="yx1-1">
+	
+		</div>
+		<div class="yx1-2">
+			<div class="yx1-2-text">
+			<h4>{{ section.settings.heading_3 }}</h4>
+			<a href="{{ section.settings.url_3 }}" class="button-2">
+				See product
+			</a>
+		</div>
+		</div>
+		</div>
+	
+	
+	
+	
+	
+	{% schema %}
+	{
+		"settings": [
+		{
+			"type": "image_picker",
+			"id": "image_1",
+			"label": "Image 1"
+		},
+		{
+			"type": "text",
+			"id": "heading_1",
+			"label": "Heading 1"
+		},
+		{
+			"type": "text",
+			"id": "description_1",
+			"label": "Description 1"
+		},
+		{
+			"type": "url",
+			"id": "url_1",
+			"label": "Product link 1"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_2",
+			"label": "Image 2"
+		},
+		{
+			"type": "text",
+			"id": "heading_2",
+			"label": "Heading 2"
+		},
+		{
+			"type": "url",
+			"id": "url_2",
+			"label": "Product link 2"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_3",
+			"label": "Image 3"
+		},
+		{
+			"type": "text",
+			"id": "heading_3",
+			"label": "Heading 3"
+		},
+		{
+			"type": "url",
+			"id": "url_3",
+			"label": "Product link 3"
+		}       
+		],
+		"presets": [
+			{
+				"name":"Featured products"
+			}
+		]
+	}
+	{% endschema %}

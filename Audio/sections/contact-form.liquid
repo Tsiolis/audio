@@ -1,0 +1,62 @@
+
+<div class="contact-container">
+	<div class="contact-form">
+{% form 'contact' %}
+  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
+  {{ form.errors | default_errors }}
+	{%- if section.settings.show_name -%}
+		<label for="ContactFormName">Name:</label>
+		<input type="text" id="ContactFormName" name="contact[name]">
+	{%- endif -%}
+	<label for="ContactFormEmail">Email:</label>
+  <input type="email" id="ContactFormEmail" name="contact[email]">
+	{% if section.settings.show_phone %}
+		<label for="ContactFormPhone">Phone:</label>
+		<input type="tel" id="ContactFormPhone" name="contact[phone]">
+	{% endif %}
+  <label for="ContactFormMessage">How can we help you:</label>
+  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
+  <input type="submit" value="SUBMIT">
+{% endform %}
+</div>
+<div>
+	{%- assign map_zoom = 10 -%}
+<h3>{{ section.settings.address }}</h3>
+<iframe src="https://maps.google.com/maps?q={{ section.settings.address }}&t=&z={{ section.settings.zoom  }}&ie=UTF8&iwloc=&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+</div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "settings": [
+	{
+		"type": "checkbox",
+		"id": "show_name",
+		"label": "Show name"
+	},
+	{
+		"type": "checkbox",
+		"id": "show_phone",
+		"label": "Show phone"
+	},
+	{
+        "type": "text",
+        "id": "address",
+        "label": "Address"
+      },
+			{
+				"type": "range",
+				"id": "zoom",
+				"min": 10,
+				"max": 20,
+				"step": 1,
+				"unit": "%",
+				"label": "Zoom",
+				"default": 10
+      }
+  
+		]}
+{% endschema %}

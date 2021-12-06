@@ -1,0 +1,30 @@
+{%- assign map_zoom = 10 -%}
+
+<iframe src="https://maps.google.com/maps?q={{ section.settings.address }}&t=&z={{ section.settings.zoom  }}&ie=UTF8&iwloc=&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+
+{% schema %}
+{
+  "name": "Map",
+  "settings": [
+			{
+        "type": "text",
+        "id": "address",
+        "label": "Address"
+      },
+			{
+				"type": "range",
+				"id": "zoom",
+				"min": 10,
+				"max": 20,
+				"step": 1,
+				"unit": "%",
+				"label": "Zoom",
+				"default": 10
+      }
+		  ],
+	"presets": [{
+		"name": "Map"
+}]
+}
+{% endschema %}

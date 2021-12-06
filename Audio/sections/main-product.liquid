@@ -1,0 +1,55 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+
+<div class="products-grid product-detail-grid">
+<div class="product">
+	<div class="product-img">
+		<img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+	</div>
+	<div class="product-text">
+		<h2>{{ product.title }}</h2>
+		<p class="p-text">
+		{{ product.description }}
+		</p>
+		<span class="price">{{ current_variant.price | money }}</span>
+		
+		<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+			<select class="variant-select" name="id" id="productSelect">
+				{% for variant in product.variants %}
+					{% if variant.available %}
+						<option value="{{ variant.id }}">
+							{{ product.title }} - 
+							{%	if variant.title != 'Default Title' %}
+							{{ variant.title }} -
+							{% endif %}
+							{{ variant.price | money }}
+						</option>
+					{% else %}
+						<option disabled="disabled">
+							{{ variant.title }} - sold out
+						</option>
+					{% endif %}
+				{% endfor %}
+			</select>
+			<div class="quantity">
+				<label for="Quantity">QUANTITY:</label>
+				<span id="minus" class="minus">-</span>
+				<input type="text" name="quantity" id="quantity" min="1" value="1">
+				<span id="plus" class="plus">+</span>
+			</div>
+			<button class="product-detail-button button-1" type="submit" name="add" id="AddToCart">Add to cart</button>
+		</form>
+	</div>
+</div>
+</div>
+
+<script src="{{ 'quantity.js' | asset_url }}" defer></script>
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+	
+	]
+}
+{% endschema %}

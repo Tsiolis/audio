@@ -1,0 +1,67 @@
+{% if cart.item_count > 0 %}
+  <form class="checkout-form" action="/cart" method="post" novalidate>
+    <table class="table">
+      <thead>
+        <th>Product</th>
+				<th>Title</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+          <tr>
+            <td class="table-img" data-label="Product">
+              <a href="{{ item.url | within: collections.all }}">
+                <img src="{{ item | img_url: '200x' }}" alt="{{ item.title | escape }}">
+              </a>
+            </td>
+						<td data-label="Title">
+              <a class="checkout-item" href="{{ item.url }}">{{ item.product.title }}</a>
+							{% if item.variant.title != 'Default Title' %}
+							- {{ item.variant.title }}
+							{% endif %}
+            </td>
+            <td class="checkout-item-td" data-label="Price">
+							{{ item.price | money }}
+            </td>
+            <td data-label="Qty">              
+							<input class="checkout-quantity" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+						</td>
+     
+            <td data-label="Total">
+              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+              {{ item.line_price | money }}
+              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+            </td>
+						<td class="remove-item"> <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="sub-total">
+			<div class="bold">
+      <p>Sub total : {{ cart.total_price | money }}</p>
+			</div>
+			<div>
+				<button class="checkout-1 button-2" type="submit" name="update">Update</button>
+				<button class="checkout-2 button-1" type="submit" name="checkout">Checkout</button>
+				</div>
+			</div>
+    </div>
+  </form>
+{% else %}
+<div class="cart-empty">
+  <h2>Cart is empty :(</h2>
+	<a href="/collections" class="button-1">Shop Now</a>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+
+  ]
+}
+{% endschema %}

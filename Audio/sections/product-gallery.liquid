@@ -1,0 +1,37 @@
+<div class="product-grid">
+<img class="product-grid-1" src="{{ section.settings.image_1 | img_url: '300x'}}" alt="{{ section.settings.image_1.alt }}">
+<img class="product-grid-2" src="{{ section.settings.image_2 | img_url: '600x'}}" alt="{{ section.settings.image_2.alt }}">
+	<img class="product-grid-3" src="{{ section.settings.image_3 | img_url: '300x'}}" alt="{{ section.settings.image_3.alt }}">
+</div>
+
+
+
+
+
+{% schema %}
+{
+	"settings": [
+		{
+			
+				"type": "image_picker",
+				"id": "image_1",
+				"label": "Gallery image"
+			},
+			{
+				"type": "image_picker",
+				"id": "image_2",
+				"label": "Gallery image"
+			},
+			{
+				"type": "image_picker",
+				"id": "image_3",
+				"label": "Gallery image"
+			}
+	],
+	"presets": [
+		{
+			"name":"Product gallery"
+		}
+	]
+}
+{% endschema %}
